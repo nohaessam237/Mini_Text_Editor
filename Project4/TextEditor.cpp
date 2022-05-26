@@ -163,18 +163,12 @@ string TextEditor::FindAll(string word)
 
 void TextEditor::FindAndReplace(string old_word, string new_word)
 {
-
 	int i = 1;
 	vector<string> T;
 	for (auto m : TextMap)
 	{
 		if (m.second.length() == 0)
 			continue;
-
-
-
-
-
 		else
 			T.push_back(m.second);
 	}
@@ -188,35 +182,18 @@ void TextEditor::FindAndReplace(string old_word, string new_word)
 	for (auto& c : old_word)
 		c = tolower(c);
 
-
-
-
 	for (int i = 0; i < TextMap.size(); i++)
-
-		for (int i = 1; i < GetSize(); i++)
-
+	{
+		int pos = 0;
+		int olen = old_word.length();
+		int nlen = new_word.length();
+		while ((pos = TextMap[i].find(old_word, pos)) != -1)
 		{
-			int pos = 0;
-			int olen = old_word.length();
-			int nlen = new_word.length();
-			while ((pos = TextMap[i].find(old_word, pos)) != -1)
-			{
-				TextMap[i].replace(pos, olen, new_word);
-				pos += nlen;
-			}
+			TextMap[i].replace(pos, olen, new_word);
+			pos += nlen;
 		}
-	printOnFile();
-}
-
-void TextEditor::lowerCase(vector<string>* u) {
-	for (int i = 0; i < (*u).size(); i++) {
-		for (auto& c : (*u)[i])
-		{
-			c = tolower(c);
-		}
-
 	}
-
+	printOnFile();
 }
 
 void TextEditor::split(string str, vector<string>* v)
@@ -254,4 +231,15 @@ void TextEditor::ClearFile()
 {
 	TextMap.clear();
 	printOnFile();
+}
+
+void TextEditor::lowerCase(vector<string>* u)
+{
+	for (int i = 0; i < (*u).size(); i++)
+	{
+		for (auto& c : (*u)[i])
+		{
+			c = tolower(c);
+		}
+	}
 }
