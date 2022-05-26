@@ -375,21 +375,20 @@ namespace Project4 {
 		ShowDialog();
 	}public:	bool FileEmpty()
 	{
-		String^ ReadFile = File::ReadAllText("C:\\Users\\Lenovo\\source\\repos\\Project4\\Project4\\Text.txt");
+		String^ ReadFile = File::ReadAllText("C:\\Users\\Lenovo\\source\\repos\\nohaessam237\\NewRepo2\\Project4\\Text.txt");
 		return (ReadFile->Length == 0);
 	}
 private: System::Void deleteLastToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-			  if (MessageBox::Show("Do you want to delete Last line? ", "Delete Last", MessageBoxButtons::YesNo, MessageBoxIcon::Question) == System::Windows::Forms::DialogResult::Yes)
-			  {
-				  if (!FileEmpty())
-				  {
-					  TextEditor Text;
-					  Text.deleteLast();
-				  }
+			  
+		if (!FileEmpty())
+		{
+			TextEditor Text;
+			Text.deleteLast();
+		}
 				  
-			  }
+			  
 
-		  }
+	}
 public:	bool isNumber(const string& str)
 {
 	for (char const& c : str) {
@@ -427,14 +426,14 @@ public:	bool isNumber(const string& str)
 		String^ s1;
 		string str2;
 		String^ s2;
-     	s1 = textBox1->Text;
+     	s1 = textBox2->Text;
 		MarshalString(s1, str1);
-		s2 = textBox2->Text;
+		s2 = textBox1->Text;
 		MarshalString(s2, str2);
 		Text.FindAndReplace(str1, str2);
 		textBox1->Text = "";
 		textBox2->Text = "";
-
+		deleteLastToolStripMenuItem_Click(sender, e);
 	}
 	private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
