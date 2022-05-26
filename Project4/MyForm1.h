@@ -102,9 +102,9 @@ namespace Project4 {
 			this->replaceWordToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->fileIsEmptyToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->getNumberOfLineToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->getLineToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->existToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->returnToMainToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->getLineToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -115,7 +115,7 @@ namespace Project4 {
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(20, 20);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->fileToolStripMenuItem,
-					this->deletionToolStripMenuItem, this->fileToolStripMenuItem1, this->existToolStripMenuItem, this->returnToMainToolStripMenuItem
+					this->deletionToolStripMenuItem, this->fileToolStripMenuItem1, this->returnToMainToolStripMenuItem, this->existToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -269,6 +269,14 @@ namespace Project4 {
 			this->getNumberOfLineToolStripMenuItem->Text = L"Get number Of Line";
 			this->getNumberOfLineToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm1::getNumberOfLineToolStripMenuItem_Click);
 			// 
+			// getLineToolStripMenuItem
+			// 
+			this->getLineToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"getLineToolStripMenuItem.Image")));
+			this->getLineToolStripMenuItem->Name = L"getLineToolStripMenuItem";
+			this->getLineToolStripMenuItem->Size = System::Drawing::Size(384, 46);
+			this->getLineToolStripMenuItem->Text = L"Get Line";
+			this->getLineToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm1::getLineToolStripMenuItem_Click);
+			// 
 			// existToolStripMenuItem
 			// 
 			this->existToolStripMenuItem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 18, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
@@ -288,14 +296,6 @@ namespace Project4 {
 			this->returnToMainToolStripMenuItem->Size = System::Drawing::Size(262, 45);
 			this->returnToMainToolStripMenuItem->Text = L"Return to Main";
 			this->returnToMainToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm1::returnToMainToolStripMenuItem_Click);
-			// 
-			// getLineToolStripMenuItem
-			// 
-			this->getLineToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"getLineToolStripMenuItem.Image")));
-			this->getLineToolStripMenuItem->Name = L"getLineToolStripMenuItem";
-			this->getLineToolStripMenuItem->Size = System::Drawing::Size(384, 46);
-			this->getLineToolStripMenuItem->Text = L"Get Line";
-			this->getLineToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm1::getLineToolStripMenuItem_Click);
 			// 
 			// MyForm1
 			// 
@@ -318,7 +318,7 @@ namespace Project4 {
 #pragma endregion
 public:	bool FileEmpty()
 {
-	String^ ReadFile = File::ReadAllText("C:\\Users\\Lenovo\\source\\repos\\Project4\\Project4\\Text.txt");
+	String^ ReadFile = File::ReadAllText("C:\\Users\\Lenovo\\source\\repos\\nohaessam237\\NewRepo2\\Project4\\Text.txt");
 	return (ReadFile->Length == 0);
 }
 
@@ -332,15 +332,13 @@ private: System::Void showToolStripMenuItem_Click(System::Object^ sender, System
 		{
 			MessageBox::Show("This File is empty \n Add lines first ", "warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 		}
-		
-		
 	}
 
 private: System::Void fileToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 
 private: System::Void existToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	Close();
+	Application::Exit();
 }
 
 private: System::Void returnToMainToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -348,6 +346,7 @@ private: System::Void returnToMainToolStripMenuItem_Click(System::Object^ sender
 	///*MyForm1 ^mf =gcnew MyForm1();
 	//mf->ShowDialog();*/
 	//this->Close();
+	this->Close();
 }
 
 private: System::Void addToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
